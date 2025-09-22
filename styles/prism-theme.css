@@ -1,15 +1,16 @@
 /* prism theme adjustments */
 
 .notion-code {
-  background-color: rgba(249, 250, 251, 1);
-  border: 1px solid rgba(229, 231, 235, 1);
-  border-radius: 0.375rem;
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 8px !important;
   padding: 1.5em !important;
+  backdrop-filter: blur(10px);
 }
 
 .dark-mode .notion-code {
-  background-color: rgba(17, 24, 39, 1);
-  border-color: rgba(55, 65, 81, 1);
+  background: rgba(255, 255, 255, 0.02) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
 }
 .notion code {
   color: rgba(31, 41, 55, 1);
@@ -23,15 +24,19 @@
 }
 
 .dark-mode .notion .notion-inline-code {
-  background: rgb(71, 76, 80) !important;
-  color: #ff4081;
+  background: rgba(139, 92, 246, 0.1) !important;
+  color: #a78bfa;
   padding: 0.2em 0.4em !important;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 4px;
 }
 
 .notion .notion-inline-code {
-  color: #ff4081;
-  background: rgba(127, 122, 107, 0.1) !important;
+  color: #8b5cf6;
+  background: rgba(139, 92, 246, 0.1) !important;
   padding: 0.2em 0.4em !important;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 4px;
 }
 
 .token.cdata,
@@ -40,7 +45,8 @@
   color: rgba(55, 65, 81, 1);
 }
 .token.comment {
-  color: #5b9b4c;
+  color: rgba(255, 255, 255, 0.4);
+  font-style: italic;
 }
 .dark-mode .token.cdata,
 .dark-mode .token.doctype,
@@ -68,7 +74,7 @@
 .token.inserted,
 .token.selector,
 .token.string {
-  color: rgba(139, 92, 246, 1);
+  color: #a78bfa;
 }
 .language-css .token.string,
 .style .token.string,
@@ -80,11 +86,12 @@
 .token.atrule,
 .token.attr-value,
 .token.keyword {
-  color: rgba(59, 130, 246, 1);
+  color: #8b5cf6;
+  font-weight: 600;
 }
 .token.class-name,
 .token.function {
-  color: rgba(236, 72, 153, 1);
+  color: #60a5fa;
 }
 .token.important,
 .token.regex,
@@ -116,7 +123,8 @@ pre {
 pre[class*='language-'] > code {
   border-left: 0 none !important;
   box-shadow: none !important;
-  background: none !important;
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.9) !important;
 }
 
 pre[class*='language-']:before,

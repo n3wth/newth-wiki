@@ -16,45 +16,68 @@ export default class MyDocument extends Document {
             />
 
             <link rel='manifest' href='/manifest.json' />
+
+            {/* Critical inline CSS to prevent white flash */}
+            <style
+              dangerouslySetInnerHTML={{
+                __html: `
+                  * {
+                    background: transparent !important;
+                  }
+                  html, body, #__next {
+                    background: #000000 !important;
+                    background-color: #000000 !important;
+                    color: #ffffff !important;
+                  }
+                  .notion-app, .notion, .notion-page, .notion-viewport, .notion-frame {
+                    background: #000000 !important;
+                    background-color: #000000 !important;
+                    color: #ffffff !important;
+                  }
+                  div[style*="background: white"],
+                  div[style*="background-color: white"],
+                  div[style*="background:white"],
+                  div[style*="background-color:white"] {
+                    background: #000000 !important;
+                    background-color: #000000 !important;
+                  }
+                `
+              }}
+            />
           </Head>
 
           <body>
             <script
               dangerouslySetInnerHTML={{
                 __html: `
-/** Inlined version of noflash.js from use-dark-mode */
+/** Force dark mode and prevent white flash */
 ;(function () {
+  // Set black background as early as possible
+  if (document.documentElement) {
+    document.documentElement.style.backgroundColor = '#000000';
+    document.documentElement.style.background = '#000000';
+  }
+  if (document.body) {
+    document.body.style.backgroundColor = '#000000';
+    document.body.style.background = '#000000';
+    document.body.style.color = '#ffffff';
+  }
+
+  // Force all divs to not be white
+  var style = document.createElement('style');
+  style.innerHTML = 'html,body,div{background:#000!important;background-color:#000!important}';
+  document.head.appendChild(style);
+
   var storageKey = 'darkMode'
   var classNameDark = 'dark-mode'
-  var classNameLight = 'light-mode'
-  function setClassOnDocumentBody(darkMode) {
-    document.body.classList.add(darkMode ? classNameDark : classNameLight)
-    document.body.classList.remove(darkMode ? classNameLight : classNameDark)
-  }
-  var preferDarkQuery = '(prefers-color-scheme: dark)'
-  var mql = window.matchMedia(preferDarkQuery)
-  var supportsColorSchemeQuery = mql.media === preferDarkQuery
-  var localStorageTheme = null
+
+  // Always force dark mode
+  document.body.classList.add(classNameDark);
+
+  // Store dark mode preference
   try {
-    localStorageTheme = localStorage.getItem(storageKey)
+    localStorage.setItem(storageKey, JSON.stringify(true));
   } catch (err) {}
-  var localStorageExists = localStorageTheme !== null
-  if (localStorageExists) {
-    localStorageTheme = JSON.parse(localStorageTheme)
-  }
-  // Determine the source of truth
-  if (localStorageExists) {
-    // source of truth from localStorage
-    setClassOnDocumentBody(localStorageTheme)
-  } else if (supportsColorSchemeQuery) {
-    // source of truth from system
-    setClassOnDocumentBody(mql.matches)
-    localStorage.setItem(storageKey, mql.matches)
-  } else {
-    // source of truth from document.body
-    var isDarkMode = document.body.classList.contains(classNameDark)
-    localStorage.setItem(storageKey, JSON.stringify(isDarkMode))
-  }
 })();
 `
               }}

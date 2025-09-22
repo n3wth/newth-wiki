@@ -1,22 +1,27 @@
-import type { PageProps } from '@/lib/types'
-import { NotionPage } from '@/components/NotionPage'
-import { domain } from '@/lib/config'
-import { resolveNotionPage } from '@/lib/resolve-notion-page'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
 
-export const getStaticProps = async () => {
-  try {
-    const props = await resolveNotionPage(domain)
+export default function HomePage() {
+  const router = useRouter()
 
-    return { props, revalidate: 10 }
-  } catch (err) {
-    console.error('page error', domain, err)
+  useEffect(() => {
+    // Redirect to newth.ai
+    window.location.href = 'https://newth.ai'
+  }, [])
 
-    // we don't want to publish the error version of this page, so
-    // let next.js know explicitly that incremental SSG failed
-    throw err
-  }
-}
-
-export default function NotionDomainPage(props: PageProps) {
-  return <NotionPage {...props} />
+  return (
+    <div style={{
+      background: '#000',
+      height: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: '#fff',
+      fontFamily: 'monospace'
+    }}>
+      <div style={{ textAlign: 'center' }}>
+        <p>Redirecting to newth.ai...</p>
+      </div>
+    </div>
+  )
 }

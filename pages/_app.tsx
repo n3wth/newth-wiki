@@ -1,7 +1,7 @@
 // used for rendering equations (optional)
 import 'katex/dist/katex.min.css'
 // used for code syntax highlighting (optional)
-import 'prismjs/themes/prism-coy.css'
+import 'prismjs/themes/prism-tomorrow.css'
 // core styles shared by all of react-notion-x (required)
 import 'react-notion-x/src/styles.css'
 // global styles shared across the entire site
@@ -10,6 +10,8 @@ import 'styles/global.css'
 // import 'prismjs/themes/prism-okaidia.css'
 // global style overrides for notion
 import 'styles/notion.css'
+// Simple dark theme - minimal and maintainable
+import 'styles/simple-dark.css'
 // global style overrides for prism theme (optional)
 import 'styles/prism-theme.css'
 

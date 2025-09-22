@@ -8,12 +8,12 @@ export default siteConfig({
   rootNotionSpaceId: '3c71e2d6-4166-815a-a6f5-00034933dc72',
 
   // basic site info (required)
-  name: 'newth.wiki',
+  name: 'Oliver Newth Wiki',
   domain: 'newth.wiki',
   author: 'Oliver Newth',
 
   // open graph metadata (optional)
-  description: 'A place for sharing knowledge and ideas.',
+  description: 'Knowledge base on AI, engineering, and creative technology by Oliver Newth.',
 
   // social usernames (optional)
   github: 'n3wth',
